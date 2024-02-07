@@ -3,6 +3,11 @@ variable "schedule_expression" {
   description = "Define the schedule expression to trigger the lambda."
 }
 
+variable "schedule_state" {
+  type    = string
+  default = "ENABLED"
+}
+
 variable "name" {
   type        = string
   description = "The name of the lambda to create."

@@ -20,6 +20,7 @@ data "archive_file" "this" {
 resource "aws_cloudwatch_event_rule" "this" {
   name                = var.name
   schedule_expression = var.schedule_expression
+  state               = var.schedule_state
   tags                = var.tags
 }
 
@@ -148,7 +149,7 @@ resource "aws_iam_role" "this" {
   count = var.custom_iam_role_arn == null ? 1 : 0
 
   name = "${var.name}IamRole"
-  tags             = var.tags
+  tags = var.tags
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
