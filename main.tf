@@ -1,16 +1,9 @@
 # Get actual region
 data "aws_region" "this" {}
 
-# Build Lambda archive
-resource "null_resource" "package_lambda_code" {
-  provisioner "local-exec" {
-    command = "make -C ${path.module}/lambda_function build"
-  }
-}
-
 data "archive_file" "this" {
   type        = "zip"
-  source_dir  = "${path.module}/lambda_function/dist/"
+  source_dir  = "${path.module}/lambda_function/src/"
   output_path = "${path.module}/dist/lambda-code.zip"
 
   depends_on = [null_resource.package_lambda_code]
