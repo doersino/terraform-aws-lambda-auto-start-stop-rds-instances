@@ -5,8 +5,6 @@ data "archive_file" "this" {
   type        = "zip"
   source_dir  = "${path.module}/lambda_function/src/"
   output_path = "${path.module}/dist/lambda-code.zip"
-
-  depends_on = [null_resource.package_lambda_code]
 }
 
 # Allow execution of Lambda from CloudWatch
